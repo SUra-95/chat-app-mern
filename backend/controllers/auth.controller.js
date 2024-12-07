@@ -58,10 +58,10 @@ export const login = async (req, res, next) => {
     try {
         const { username, password } = req.body;
 
-        const user = await User.findOne({username});
+        const user = await User.findOne({ username });
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
-        if(!user || !isPasswordCorrect) {
+        if (!user || !isPasswordCorrect) {
             res.status(400).json({ error: "username or password is invalid" });
         }
 
@@ -79,6 +79,12 @@ export const login = async (req, res, next) => {
         res.status(500).json({ error: error.message });
     }
 }
-export const logout = (req, res, next) => {
-    console.log("Logout User");
+export const logout = async (req, res, next) => {
+    try {
+        res.cookie("jwt", "" , {maxAge:0});
+        res.status(200).json({message: "User logged out successfully"});
+    } catch (error) {
+        console.log("Error in Logout controller", error.message);
+        res.status(500).json({ error: error.message });
+    }
 }
