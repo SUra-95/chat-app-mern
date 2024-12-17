@@ -6,9 +6,9 @@ export const sendMessage = async (req, res) => {
         const {id: receiverId} = req.params; //const id = req.params.id;
         const senderId = req.user._id;
 
-            await Conversation.findOne({
-                participants: { all }
-            });
+        let conversation = await Conversation.findOne({
+            participants: { $all: [senderId, receiverId] },
+        });
 
     } catch (error) {
         console.log("Error in message Controller", error.message);
