@@ -10,6 +10,12 @@ export const sendMessage = async (req, res) => {
             participants: { $all: [senderId, receiverId] },
         });
 
+        if(!conversation){
+            conversation = await Conversation.create({
+                participants: [senderId, receiverId],
+            });
+        }
+
     } catch (error) {
         console.log("Error in message Controller", error.message);
         res.status(500).json({ error: "Internal Server Error"});
