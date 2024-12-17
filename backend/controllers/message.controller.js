@@ -26,6 +26,8 @@ export const sendMessage = async (req, res) => {
             conversation.messages.push(newMessage._id);
         }
 
+        res.status(201).json(newMessage);
+
     } catch (error) {
         console.log("Error in message Controller", error.message);
         res.status(500).json({ error: "Internal Server Error"});
