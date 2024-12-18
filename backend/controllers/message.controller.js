@@ -1,4 +1,5 @@
 import Conversation from "../models/conversation.model.js";
+import Message from "../models/message.model.js";
 
 export const sendMessage = async (req, res) => {
     try {
@@ -16,7 +17,7 @@ export const sendMessage = async (req, res) => {
             });
         }
 
-        const newMessage = new MessageChannel({
+        const newMessage = new Message({
             senderId,
             receiverId,
             message
