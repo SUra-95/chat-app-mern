@@ -16,7 +16,7 @@ app.use(express.json()); // to parse the incoming requests with JSON payloads (f
 app.use(cookieParser()); // to parse the incoming cookies from req.cookie
 
 app.use('/api/auth', authRoutes);
-app.use('/api/messages', protectRoutes, messageRoutes);
+app.use('/api/messages', messageRoutes);
 
 // app.get('/', (req, res) => {
 //     res.send('Hello, world!!!!!!!!!!!!!!!!!!!!!!!!');
