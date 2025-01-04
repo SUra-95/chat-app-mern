@@ -81,7 +81,7 @@ const SignUp = () => {
 
 					<GenderCheckbox oncheckboxChange={handleCheckboxChange} selectedGender={inputs.gender} />
 
-					<Link to={"/login"} className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block' href='#'>
+					<Link to={"/login"} className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block'>
 						Already have an account?
 					</Link>
 
