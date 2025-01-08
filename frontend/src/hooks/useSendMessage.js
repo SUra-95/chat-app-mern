@@ -7,7 +7,7 @@ const useSendMessage = () => {
     const [loading, setLoading] = useState(false);
     const {messages, setMessages, selectedConversation} = useConversation();
 
-    const sendMessage = async (messages) => {
+    const sendMessage = async (message) => {
         setLoading(true);
         try {
             const res = await fetch(`api/messages/send/${selectedConversation._id}`, {
@@ -15,7 +15,7 @@ const useSendMessage = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({messages})
+                body: JSON.stringify({message})
             });
             const data = await res.json();
             if(data.error) {
@@ -29,7 +29,7 @@ const useSendMessage = () => {
         }
     }
 
-    return {sendMessage, loading};
+    return { sendMessage, loading};
 
 };
 
