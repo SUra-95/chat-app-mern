@@ -12,8 +12,13 @@ const io = new Server(server, {
     }
 });
 
+const userSocketMap = {}; // { userId: socketId }
+
 io.on('connection', (socket) => {
     console.log('A user connected', socket.id);
+
+    const userId = socket.handshake.query.userId;
+    if (userId != "undefined") userSocketMap[userId] = socket.id;
 
     // socket.on() is used to listen for the events. can be used bith on client and server side
     socket.on('disconnect', (socket) => {
